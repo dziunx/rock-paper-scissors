@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <title>Scissors play</title>
+  </head>
+  <body>
+    <script>
+      function computerPlay() {
+        let rps = ["rock", "paper", "scissors"];
+        let random = Math.floor(Math.random() * 3);
+        console.log(rps[random]);
+        return rps[random];
+      }
+
+      function playRound(computerSelection, playerSelection) {
+        return computerSelection.toUpperCase() == "ROCK" &&
+          playerSelection.toUpperCase() == "PAPER"
+          ? `You won! ${playerSelection} beats ${computerSelection}`
+          : computerSelection.toUpperCase() == "ROCK" &&
+            playerSelection.toUpperCase() == "SCISSORS"
+          ? `You lost! ${computerSelection} beats ${playerSelection}`
+          : computerSelection.toUpperCase() == "PAPER" &&
+            playerSelection.toUpperCase() == "SCISSORS"
+          ? `You won! ${playerSelection} beats ${computerSelection}`
+          : computerSelection.toUpperCase() == "PAPER" &&
+            playerSelection.toUpperCase() == "ROCK"
+          ? `You lost! ${computerSelection} beats ${playerSelection}`
+          : computerSelection.toUpperCase() == "SCISSORS" &&
+            playerSelection.toUpperCase() == "ROCK"
+          ? `You won! ${playerSelection} beats ${computerSelection}`
+          : computerSelection.toUpperCase() == "SCISSORS" &&
+            playerSelection.toUpperCase() == "PAPER"
+          ? `You lost! ${computerSelection} beats ${playerSelection}`
+          : "It's a draw!";
+      }
+
+      function game() {
+        for (let i = 0; i < 5; i++) {
+          let playerSelection = prompt("Rock, scissors or paper?");
+          let computerSelection = computerPlay();
+          console.log(playRound(computerSelection, playerSelection));
+        }
+      }
+      game();
+      //console.log(playRound(computerSelection, playerSelection));
+    </script>
+  </body>
+</html>

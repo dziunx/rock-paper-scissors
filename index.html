@@ -16,36 +16,78 @@
         return rps[random];
       }
 
+      // function playRound(computerSelection, playerSelection) {
+      //   return computerSelection.toUpperCase() == "ROCK" &&
+      //     playerSelection.toUpperCase() == "PAPER"
+      //     ? `You won! ${playerSelection} beats ${computerSelection}`
+      //     : computerSelection.toUpperCase() == "ROCK" &&
+      //       playerSelection.toUpperCase() == "SCISSORS"
+      //     ? `You lost! ${computerSelection} beats ${playerSelection}`
+      //     : computerSelection.toUpperCase() == "PAPER" &&
+      //       playerSelection.toUpperCase() == "SCISSORS"
+      //     ? `You won! ${playerSelection} beats ${computerSelection}`
+      //     : computerSelection.toUpperCase() == "PAPER" &&
+      //       playerSelection.toUpperCase() == "ROCK"
+      //     ? `You lost! ${computerSelection} beats ${playerSelection}`
+      //     : computerSelection.toUpperCase() == "SCISSORS" &&
+      //       playerSelection.toUpperCase() == "ROCK"
+      //     ? `You won! ${playerSelection} beats ${computerSelection}`
+      //     : computerSelection.toUpperCase() == "SCISSORS" &&
+      //       playerSelection.toUpperCase() == "PAPER"
+      //     ? `You lost! ${computerSelection} beats ${playerSelection}`
+      //     : "It's a draw!";
+      // }
+      let countP = 0;
+      let countC = 0;
       function playRound(computerSelection, playerSelection) {
-        return computerSelection.toUpperCase() == "ROCK" &&
-          playerSelection.toUpperCase() == "PAPER"
-          ? `You won! ${playerSelection} beats ${computerSelection}`
-          : computerSelection.toUpperCase() == "ROCK" &&
-            playerSelection.toUpperCase() == "SCISSORS"
-          ? `You lost! ${computerSelection} beats ${playerSelection}`
-          : computerSelection.toUpperCase() == "PAPER" &&
-            playerSelection.toUpperCase() == "SCISSORS"
-          ? `You won! ${playerSelection} beats ${computerSelection}`
-          : computerSelection.toUpperCase() == "PAPER" &&
-            playerSelection.toUpperCase() == "ROCK"
-          ? `You lost! ${computerSelection} beats ${playerSelection}`
-          : computerSelection.toUpperCase() == "SCISSORS" &&
-            playerSelection.toUpperCase() == "ROCK"
-          ? `You won! ${playerSelection} beats ${computerSelection}`
-          : computerSelection.toUpperCase() == "SCISSORS" &&
-            playerSelection.toUpperCase() == "PAPER"
-          ? `You lost! ${computerSelection} beats ${playerSelection}`
-          : "It's a draw!";
+        if (
+          (computerSelection.toUpperCase() == "ROCK" &&
+            playerSelection.toUpperCase() == "PAPER") ||
+          (computerSelection.toUpperCase() == "PAPER" &&
+            playerSelection.toUpperCase() == "SCISSORS") ||
+          (computerSelection.toUpperCase() == "SCISSORS" &&
+            playerSelection.toUpperCase() == "ROCK")
+        ) {
+          ++countP;
+          console.log(`You won! ${playerSelection} beats ${computerSelection}`);
+          return countP;
+        } else if (
+          (computerSelection.toUpperCase() == "ROCK" &&
+            playerSelection.toUpperCase() == "SCISSORS") ||
+          (computerSelection.toUpperCase() == "PAPER" &&
+            playerSelection.toUpperCase() == "ROCK") ||
+          (computerSelection.toUpperCase() == "SCISSORS" &&
+            playerSelection.toUpperCase() == "PAPER")
+        ) {
+          ++countC;
+          console.log(
+            `You lost! ${computerSelection} beats ${playerSelection}`
+          );
+          return countC;
+        } else {
+          //console.log( "It's a draw!");
+          return "It's a draw";
+        }
       }
 
       function game() {
         for (let i = 0; i < 5; i++) {
           let playerSelection = prompt("Rock, scissors or paper?");
           let computerSelection = computerPlay();
-          console.log(playRound(computerSelection, playerSelection));
+          //let computerSelection = "paper";
+
+          let x = playRound(computerSelection, playerSelection);
+          console.log(x);
+          console.log(countC);
+          console.log(countP);
         }
+        return countP > countC
+          ? `You won! Your score is ${countP}`
+          : countP < countC
+          ? `You lost! Computer score is ${countC}`
+          : "It's a draw!";
       }
-      game();
+      console.log(game());
       //console.log(playRound(computerSelection, playerSelection));
     </script>
   </body>
